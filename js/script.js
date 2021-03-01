@@ -45,7 +45,7 @@ class Shop {
             document.querySelector('#btnPanier'+i).addEventListener('click',  () => {
                 let nb = document.querySelector(`#input${i}`).value
                 if (nb) {
-                   this.addPanier(nb, i)
+                   this.addPanier(nb, i, this.data[i].title)
                 } else {
                     alert('Vous devez choisir une quantité')
                 }
@@ -53,7 +53,7 @@ class Shop {
         }
     }
 
-    addPanier (nb, id) {
+    addPanier (nb, id, title) {
         const cardPanier = {
             id: id,
             content: `<div id="panier${id}" class="col-12 border border-dark">
@@ -62,7 +62,7 @@ class Shop {
                                         <img src="img/nounours-beige-clair-28-cm-6901.jpg" style="width: 100%;" alt="">
                                     </div>
                                     <div class="col-3 text-center p-0">
-                                        <p>title</p>
+                                        <p>${title}</p>
                                     </div>
                                     <div id="number${id}" class="col-3 align-middle text-center p-0">
                                         ${nb}X
@@ -74,8 +74,6 @@ class Shop {
                             </div>`
         }
         let panierI = document.querySelector(`#panier${id}`)
-        console.log(panierI)
-        console.log(this.panier)
         if (panierI) {
             let t = parseInt(document.querySelector(`#number${id}`).innerHTML.trim().substr(0,1))
             let res = t + parseInt(nb)
